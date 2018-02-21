@@ -1,6 +1,6 @@
 ECS_ID := 429564250042
 AWS_REGION     := ap-northeast-1
-APP := shatter
+APP := shutter
 CLUSTER := iot
 export AWS_REGION
 export AWS_DEFAULT_REGION=$(AWS_REGION)
