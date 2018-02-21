@@ -206,7 +206,7 @@ func (router *Router) On(name string, callback interface{}) {
 	} else {
 		// DEFAULT TYPE
 
-		// NO DATA
+		// NO DATA””
 		if reflect.TypeOf(callback).NumIn() == 1 {
 			router.callbacks[name] = func(conn *Connection, data interface{}) {
 				callback.(func(*Connection))(conn)

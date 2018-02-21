@@ -1,11 +1,12 @@
 package router
 
 import (
-	//. "github.com/HAL-RO-Developer/shutter/controller"
+	. "github.com/HAL-RO-Developer/shutter/controller"
 	"github.com/gin-gonic/gin"
 )
 
 func apiRouter(api *gin.RouterGroup) {
+	api.POST("/shutter", Shutter)
 
 }
 

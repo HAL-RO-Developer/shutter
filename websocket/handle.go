@@ -7,7 +7,7 @@ import (
 	"github.com/trevex/golem"
 )
 
-var conns []golem.Connection
+var room = golem.NewRoom()
 
 func GetHandle() func(http.ResponseWriter, *http.Request) {
 	return createRouter().Handler()
@@ -16,19 +16,24 @@ func GetHandle() func(http.ResponseWriter, *http.Request) {
 func createRouter() *golem.Router {
 	router := golem.NewRouter()
 	router.OnConnect(connectHndle)
-	router.On("shutter", shutter)
+	router.OnClose(close)
 	return router
 }
-func shutter(conn *golem.Connection) {
-	for _, val := range conns {
-		if *conn != val {
-			val.Emit("", "hoge")
-		}
-	}
+func Shutter() {
+	room.Emit("shutter", struct {
+		Msg string `json:"msg"`
+	}{
+		Msg: "on",
+	})
+}
+
+func close(conn *golem.Connection) {
+	fmt.Println("Leave")
+	room.Leave(conn)
 }
 
 // connection接続時の処理はここに書く
 func connectHndle(conn *golem.Connection, http *http.Request) {
-	fmt.Println(http.Host)
-	conns = append(conns, *conn)
+	fmt.Println("Join")
+	room.Join(conn)
 }
