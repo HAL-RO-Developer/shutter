@@ -23,4 +23,4 @@ docker/push:
 	docker push $(DOCKER_IMAGE)
 
 docker/deploy:
-	.circleci/ecs-deploy --enable-rollback --timeout 300 --cluster $(APP) --service-name $(APP) --image $(DOCKER_IMAGE)
+	.circleci/ecs-deploy --enable-rollback --timeout 300 --cluster $(CLUSTER) --service-name $(APP) --image $(DOCKER_IMAGE)
