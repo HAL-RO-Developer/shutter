@@ -7,6 +7,7 @@ import (
 
 func apiRouter(api *gin.RouterGroup) {
 	api.POST("/shutter", Shutter)
+	api.POST("/upload", UpLoad)
 
 }
 
