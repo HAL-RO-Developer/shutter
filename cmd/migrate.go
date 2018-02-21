@@ -1,6 +1,6 @@
 package main
 
-import "github.com/makki0205/vue-go/model"
+import "github.com/HAL-RO-Developer/shutter/model"
 
 func main() {
 	db := model.GetDBConn()

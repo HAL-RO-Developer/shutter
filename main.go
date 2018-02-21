@@ -1,6 +1,6 @@
 package main
 
-import "github.com/makki0205/vue-go/router"
+import "github.com/HAL-RO-Developer/shutter/router"
 
 func main() {
 	r := router.GetRouter()

@@ -1,8 +1,8 @@
 package router
 
 import (
+	"github.com/HAL-RO-Developer/shutter/websocket"
 	"github.com/gin-gonic/gin"
-	"github.com/makki0205/vue-go/middleware"
 )
 
 func GetRouter() *gin.Engine {
@@ -10,6 +10,9 @@ func GetRouter() *gin.Engine {
 	r.Static("/js", "./public/js")
 	r.Static("/image", "./public/image")
 	r.Static("/css", "./public/css")
+	r.GET("/ws", func(c *gin.Context) {
+		websocket.GetHandle()(c.Writer, c.Request)
+	})
 
 	r.LoadHTMLGlob("view/*")
 	r.NoRoute(func(c *gin.Context) {
@@ -18,7 +21,6 @@ func GetRouter() *gin.Engine {
 	api := r.Group("/api")
 	apiRouter(api)
 	auth := api.Group("")
-	auth.Use(middleware.Jwt("hogehoge", 3600*24*365))
 	authApiRouter(auth)
 	return r
 
