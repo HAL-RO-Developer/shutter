@@ -11,17 +11,12 @@ type Model struct {
 	DeletedAt *time.Time `sql:"index" json:"-"`
 }
 
-type User struct {
-	Model
-	Email    string `json:"email" binding:"required"`
-	Password string `json:"password" binding:"required"`
-}
-type Token struct {
-	Model
-	UserID uint
-	Body   string
-}
-
-type Recipi struct {
+type Account struct {
+	TwitterID      string
+	CustomerKey    string
+	CustomerSecret string
+	AccessToken    string
+	AccessSecret   string
+	Alive          bool
 	Model
 }
