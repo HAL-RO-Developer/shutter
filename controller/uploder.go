@@ -31,6 +31,7 @@ func UpLoad(c *gin.Context) {
 	if err != nil {
 		panic(err)
 	}
+	cnt++
 	c.JSON(http.StatusOK, gin.H{
 		"path": "/image/" + fileName,
 	})
