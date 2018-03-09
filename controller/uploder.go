@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -10,6 +11,8 @@ import (
 	"github.com/HAL-RO-Developer/shutter/service"
 	"github.com/gin-gonic/gin"
 )
+
+var cnt int
 
 func UpLoad(c *gin.Context) {
 	file, _, _ := c.Request.FormFile("file")
@@ -24,7 +27,7 @@ func UpLoad(c *gin.Context) {
 
 	defer out.Close()
 	io.Copy(out, file)
-	err := service.TweetAPI(service.Account.Get("hal_shutter"), "test!!", filePath)
+	err := service.TweetAPI(service.Account.Get("hal_shutter"), fmt.Sprintf("ようこそ%d人目のお客様です!! \n\n[%s]", cnt, time.Now().String()), filePath)
 	if err != nil {
 		panic(err)
 	}
