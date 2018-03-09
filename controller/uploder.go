@@ -27,7 +27,7 @@ func UpLoad(c *gin.Context) {
 
 	defer out.Close()
 	io.Copy(out, file)
-	err := service.TweetAPI(service.Account.Get("hal_shutter"), fmt.Sprintf("ようこそ%d人目のお客様です!! \n\n[%s]", cnt, time.Now().String()), filePath)
+	err := service.TweetAPI(service.Account.Get("hal_shutter"), fmt.Sprintf("ようこそ%d人目のお客様です!!\n #HEW #HEW2018 #shutter \n\n[%s]", cnt, time.Now().String()), filePath)
 	if err != nil {
 		panic(err)
 	}
